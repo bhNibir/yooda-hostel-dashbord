@@ -6,9 +6,19 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import React from "react";
+import React, { useState } from "react";
 
-const ItemTable = ({ itemList }) => {
+const ItemTable = ({ allFoodItems, deleteFoodItem }) => {
+  const [showMessage, setShowMessage] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [result, setResult] = useState(null);
+
+  const handleDelete = ({ _id }) => {
+    deleteFoodItem(_id);
+    console.log(_id);
+  };
+
   return (
     <Table>
       <TableHead>
@@ -20,17 +30,21 @@ const ItemTable = ({ itemList }) => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {itemList &&
-          itemList.map((row, index) => (
-            <TableRow key={row.id}>
+        {allFoodItems &&
+          allFoodItems.map((item, index) => (
+            <TableRow key={item._id}>
               <TableCell align="center">{index + 1}</TableCell>
-              <TableCell align="center">{row.name}</TableCell>
-              <TableCell align="center">{`৳ ${row.price}`}</TableCell>
+              <TableCell align="center">{item.name}</TableCell>
+              <TableCell align="center">{`৳ ${item.price}`}</TableCell>
               <TableCell align="center">
                 <IconButton color="primary" aria-label="edit">
                   <EditIcon />
                 </IconButton>
-                <IconButton color="error" aria-label="Delete">
+                <IconButton
+                  color="error"
+                  aria-label="Delete"
+                  onClick={() => handleDelete(item)}
+                >
                   <DeleteIcon />
                 </IconButton>
               </TableCell>

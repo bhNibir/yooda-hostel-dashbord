@@ -10,7 +10,13 @@ function preventDefault(event) {
   event.preventDefault();
 }
 
-const FoodItems = ({ open, setOpen, result, loading }) => {
+const FoodItems = ({
+  open,
+  setOpen,
+  allFoodItems,
+  loading,
+  deleteFoodItem,
+}) => {
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -43,7 +49,10 @@ const FoodItems = ({ open, setOpen, result, loading }) => {
               </Fab>
             </Stack>
           </Box>
-          <ItemTable itemList={result} />
+          <ItemTable
+            allFoodItems={allFoodItems}
+            deleteFoodItem={deleteFoodItem}
+          />
           <Link
             color="primary"
             href="#"

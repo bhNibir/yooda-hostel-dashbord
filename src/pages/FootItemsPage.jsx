@@ -6,17 +6,34 @@ import FoodItems from "./../components/FoodItems/FoodItems";
 const FootItemsPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [result, setResult] = useState(null);
+  const [allFoodItems, setAllFoodItems] = useState(null);
+  const [deleteFoodItem, setDeleteFoodItem] = useState(null);
   const [open, setOpen] = useState(false);
 
-  async function getFoodItem() {
+  async function getAllFoodItem() {
     try {
       setLoading(true);
       setError(false);
       const response = await apiClient.get("/allFood");
       console.log(response);
       setLoading(false);
-      setResult(response.data);
+      setAllFoodItems(response.data);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+      setError(true);
+    }
+  }
+
+  async function handleDeleteFoodItem(id) {
+    try {
+      setLoading(true);
+      setError(false);
+      const response = await apiClient.delete(`/foodDelete/${id}`);
+      console.log("delete", response);
+      setLoading(false);
+      setDeleteFoodItem(response.data);
+      // setShowMessage(true);
     } catch (err) {
       console.log(err);
       setLoading(false);
@@ -25,8 +42,8 @@ const FootItemsPage = () => {
   }
 
   useEffect(() => {
-    getFoodItem();
-  }, [open]);
+    getAllFoodItem();
+  }, [open, deleteFoodItem]);
 
   return (
     <>
@@ -34,8 +51,9 @@ const FootItemsPage = () => {
         <FoodItems
           open={open}
           setOpen={setOpen}
-          result={result}
+          allFoodItems={allFoodItems}
           loading={loading}
+          deleteFoodItem={handleDeleteFoodItem}
         />
       </DashboardLayout>
     </>
