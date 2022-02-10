@@ -1,20 +1,49 @@
 import CloseIcon from "@mui/icons-material/Close";
+import SaveIcon from "@mui/icons-material/Save";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { IconButton, Toolbar, Typography } from "@mui/material";
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import apiClient from "../../utilities/AllRequest";
+import ShowMessage from "../ErrorMessages/ShowMessage";
 import AddFoodForm from "./AddFoodForm";
 
 const AddFood = ({ open, handleClose }) => {
+  const [showMessage, setShowMessage] = React.useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [result, setResult] = useState(null);
+
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const { handleSubmit, control } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { handleSubmit, control, reset } = useForm();
+
+  async function addFoodItem(data) {
+    try {
+      setLoading(true);
+      setError(false);
+      const response = await apiClient.post("/addFood", data);
+      console.log(response);
+      setLoading(false);
+      setResult(response.data);
+      reset({ name: "", price: "" });
+      setShowMessage(true);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+      setError(true);
+    }
+  }
+
+  const onSubmit = (data) => {
+    addFoodItem(data);
+    console.log(data);
+  };
 
   return (
     <div>
@@ -37,18 +66,26 @@ const AddFood = ({ open, handleClose }) => {
             <AddFoodForm control={control} />
           </DialogContent>
           <DialogActions>
-            <Button
+            <LoadingButton
+              loading={loading}
+              loadingPosition="start"
+              startIcon={<SaveIcon />}
+              variant="contained"
+              type="submit"
               sx={{
                 m: 1,
               }}
-              variant="contained"
-              type="submit"
             >
               ADD
-            </Button>
+            </LoadingButton>
           </DialogActions>
         </form>
       </Dialog>
+      <ShowMessage
+        showMessage={showMessage}
+        setShowMessage={setShowMessage}
+        message="Food item Added Successfully !"
+      />
     </div>
   );
 };

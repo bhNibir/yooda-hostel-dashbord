@@ -1,31 +1,16 @@
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Fab, Grid, Paper, Stack } from "@mui/material";
 import Link from "@mui/material/Link";
-import React, { useState } from "react";
+import React from "react";
 import Title from "./../Title";
 import AddFood from "./AddFood";
 import ItemTable from "./ItemTable";
-
-// Generate Order Data
-function createData(id, name, price) {
-  return { id, name, price };
-}
-
-const itemList = [
-  createData(0, "Elvis Presley", 312.44),
-  createData(1, "Paul McCartney", 866.99),
-  createData(2, "Tom Scholz", 100.81),
-  createData(3, "Michael Jackson", 654.39),
-  createData(4, "Bruce Springsteen", 212.79),
-];
 
 function preventDefault(event) {
   event.preventDefault();
 }
 
-const FoodItems = () => {
-  const [open, setOpen] = useState(false);
-
+const FoodItems = ({ open, setOpen, result, loading }) => {
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -33,6 +18,7 @@ const FoodItems = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <>
       <Grid item xs={12}>
@@ -57,7 +43,7 @@ const FoodItems = () => {
               </Fab>
             </Stack>
           </Box>
-          <ItemTable itemList={itemList} />
+          <ItemTable itemList={result} />
           <Link
             color="primary"
             href="#"

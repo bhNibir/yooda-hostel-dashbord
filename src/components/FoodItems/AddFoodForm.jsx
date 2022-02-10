@@ -14,17 +14,18 @@ const AddFoodForm = ({ control }) => {
         type="text"
         fullWidth
         variant="outlined"
+        required
       />
       <RHFMInput
         name="price"
         control={control}
-        autoFocus
         margin="dense"
         id="price"
         label="Price"
         type="text"
         fullWidth
         variant="outlined"
+        required
       />
     </>
   );

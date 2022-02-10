@@ -20,21 +20,22 @@ const ItemTable = ({ itemList }) => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {itemList.map((row) => (
-          <TableRow key={row.id}>
-            <TableCell align="center">{row.id}</TableCell>
-            <TableCell align="center">{row.name}</TableCell>
-            <TableCell align="center">{`৳ ${row.price}`}</TableCell>
-            <TableCell align="center">
-              <IconButton color="primary" aria-label="edit">
-                <EditIcon />
-              </IconButton>
-              <IconButton color="error" aria-label="Delete">
-                <DeleteIcon />
-              </IconButton>
-            </TableCell>
-          </TableRow>
-        ))}
+        {itemList &&
+          itemList.map((row, index) => (
+            <TableRow key={row.id}>
+              <TableCell align="center">{index + 1}</TableCell>
+              <TableCell align="center">{row.name}</TableCell>
+              <TableCell align="center">{`৳ ${row.price}`}</TableCell>
+              <TableCell align="center">
+                <IconButton color="primary" aria-label="edit">
+                  <EditIcon />
+                </IconButton>
+                <IconButton color="error" aria-label="Delete">
+                  <DeleteIcon />
+                </IconButton>
+              </TableCell>
+            </TableRow>
+          ))}
       </TableBody>
     </Table>
   );
