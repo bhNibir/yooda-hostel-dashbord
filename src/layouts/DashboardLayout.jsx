@@ -1,4 +1,4 @@
-import { Box, Container, CssBaseline, Toolbar } from "@mui/material";
+import { Box, Container, CssBaseline, Grid, Toolbar } from "@mui/material";
 import React from "react";
 import NavBar from "./../components/Navbar/NavBar";
 
@@ -20,7 +20,11 @@ const DashboardLayout = ({ children }) => {
         }}
       >
         <Toolbar />
-        <Container sx={{ mt: 4, mb: 4 }}>{children}</Container>
+        <Container sx={{ mt: 4, mb: 4 }}>
+          <Grid container spacing={3}>
+            {children}
+          </Grid>
+        </Container>
       </Box>
     </Box>
   );

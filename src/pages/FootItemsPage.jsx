@@ -1,11 +1,12 @@
 import React from "react";
 import DashboardLayout from "../layouts/DashboardLayout";
+import FoodItems from "./../components/FoodItems/FoodItems";
 
 const FootItemsPage = () => {
   return (
     <>
       <DashboardLayout>
-        <div> FootItemsPage </div>
+        <FoodItems />
       </DashboardLayout>
     </>
   );

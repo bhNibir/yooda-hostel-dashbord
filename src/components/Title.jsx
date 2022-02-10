@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import * as React from "react";
+import React from "react";
 
 function Title(props) {
   return (

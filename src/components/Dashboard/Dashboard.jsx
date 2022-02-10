@@ -6,7 +6,7 @@ import Orders from "./Orders";
 
 function DashboardContent() {
   return (
-    <Grid container spacing={3}>
+    <>
       {/* Chart */}
       <Grid item xs={12} md={8} lg={9}>
         <Paper
@@ -39,7 +39,7 @@ function DashboardContent() {
           <Orders />
         </Paper>
       </Grid>
-    </Grid>
+    </>
   );
 }
 
