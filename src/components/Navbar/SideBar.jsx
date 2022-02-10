@@ -56,9 +56,7 @@ const SideBar = ({ toggleDrawer, open }) => {
       <Divider />
       <List component="nav">
         <SideBarItems />
-        {/* {mainListItems} */}
         <Divider sx={{ my: 1 }} />
-        {/* {secondaryListItems} */}
       </List>
     </Drawer>
   );
