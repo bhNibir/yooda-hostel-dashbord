@@ -8,7 +8,7 @@ const FootItemsPage = () => {
   const [error, setError] = useState(false);
   const [allFoodItems, setAllFoodItems] = useState(null);
   const [deleteFoodItem, setDeleteFoodItem] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
 
   async function getAllFoodItem() {
     try {
@@ -43,14 +43,14 @@ const FootItemsPage = () => {
 
   useEffect(() => {
     getAllFoodItem();
-  }, [open, deleteFoodItem]);
+  }, [showMessage, deleteFoodItem]);
 
   return (
     <>
       <DashboardLayout>
         <FoodItems
-          open={open}
-          setOpen={setOpen}
+          showMessage={showMessage}
+          setShowMessage={setShowMessage}
           allFoodItems={allFoodItems}
           loading={loading}
           deleteFoodItem={handleDeleteFoodItem}

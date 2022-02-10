@@ -1,7 +1,7 @@
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Fab, Grid, Paper, Stack } from "@mui/material";
 import Link from "@mui/material/Link";
-import React from "react";
+import React, { useState } from "react";
 import Title from "./../Title";
 import AddFood from "./AddFood";
 import ItemTable from "./ItemTable";
@@ -11,12 +11,13 @@ function preventDefault(event) {
 }
 
 const FoodItems = ({
-  open,
-  setOpen,
+  setShowMessage,
+  showMessage,
   allFoodItems,
   loading,
   deleteFoodItem,
 }) => {
+  const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -63,7 +64,12 @@ const FoodItems = ({
           </Link>
         </Paper>
       </Grid>
-      <AddFood open={open} handleClose={handleClose} />
+      <AddFood
+        open={open}
+        handleClose={handleClose}
+        setShowMessage={setShowMessage}
+        showMessage={showMessage}
+      />
     </>
   );
 };

@@ -6,14 +6,9 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import React, { useState } from "react";
+import React from "react";
 
 const ItemTable = ({ allFoodItems, deleteFoodItem }) => {
-  const [showMessage, setShowMessage] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [result, setResult] = useState(null);
-
   const handleDelete = ({ _id }) => {
     deleteFoodItem(_id);
     console.log(_id);
@@ -37,7 +32,11 @@ const ItemTable = ({ allFoodItems, deleteFoodItem }) => {
               <TableCell align="center">{item.name}</TableCell>
               <TableCell align="center">{`৳ ${item.price}`}</TableCell>
               <TableCell align="center">
-                <IconButton color="primary" aria-label="edit">
+                <IconButton
+                  color="primary"
+                  aria-label="edit"
+                  onClick={() => console.log(item)}
+                >
                   <EditIcon />
                 </IconButton>
                 <IconButton

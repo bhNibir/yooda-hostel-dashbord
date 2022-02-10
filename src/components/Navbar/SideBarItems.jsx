@@ -15,19 +15,19 @@ const SideBarItems = () => {
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
       </ListItemButton>
-      <ListItemButton component={RouterLink} to="/students">
-        <ListItemIcon>
-          <PeopleIcon />
-        </ListItemIcon>
-        <ListItemText primary="Students" />
-      </ListItemButton>
       <ListItemButton component={RouterLink} to="/fooditems">
         <ListItemIcon>
           <FastfoodIcon />
         </ListItemIcon>
         <ListItemText primary="Food Items" />
       </ListItemButton>
-      <ListItemButton component={RouterLink} to="/serve">
+      <ListItemButton component={RouterLink} to="/students">
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Students" />
+      </ListItemButton>
+      <ListItemButton component={RouterLink} to="/distribution">
         <ListItemIcon>
           <DeliveryDiningIcon />
         </ListItemIcon>
