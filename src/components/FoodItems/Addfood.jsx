@@ -13,8 +13,7 @@ import apiClient from "../../utilities/AllRequest";
 import ShowMessage from "../ErrorMessages/ShowMessage";
 import AddFoodForm from "./AddFoodForm";
 
-const AddFood = ({ open, handleClose }) => {
-  const [showMessage, setShowMessage] = React.useState(false);
+const AddFood = ({ open, handleClose, showMessage, setShowMessage }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [result, setResult] = useState(null);

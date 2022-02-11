@@ -3,7 +3,7 @@ import { Box, Fab, Grid, Paper, Stack } from "@mui/material";
 import Link from "@mui/material/Link";
 import React, { useState } from "react";
 import Title from "./../Title";
-import AddFood from "./AddFood";
+import AddFood from "./Addfood";
 import ItemTable from "./ItemTable";
 
 function preventDefault(event) {
